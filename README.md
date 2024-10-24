@@ -36,6 +36,7 @@ The project is built using **NestJS**, a progressive Node.js framework, alongsid
 
 1. **Complexity in Relationships**: The many-to-one relationship between `Question` and `RegionQuestion` adds complexity, requiring careful management of foreign keys and ensuring data integrity.
 2. **Region entity is not defined**: The use of an array to hold the available regions isn't the most optimal. A separate entity for the region is needed
+3. **Lack of Redis**: Implementing redis will significantly improve the system. region specific questions can be store in memory `Redis` for the specified duration after which it is expired. This can be set up in the scheduler service each time it runs based on the `CYCLE` defined in environment variable.
 
 ## Implementation Details
 
@@ -46,14 +47,17 @@ The project is built using **NestJS**, a progressive Node.js framework, alongsid
    git clone <repository-url>
    ```
 2. Install dependencies:
+
    ```yarn install
 
    ```
+
 3. Set environments variable
    ```CYCLE=<number-of-days-for-cycle-duration>
    DATABASE_URL=
    ```
 4. Start the server
+
    ```yarn start
 
    ```
